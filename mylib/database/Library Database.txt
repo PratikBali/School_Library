@@ -1,0 +1,83 @@
+create database library;
+use library;
+
+create table Login
+(
+	name varchar(50) primary key,
+	password varchar(100),
+	question varchar(100),
+	answer varchar(100)
+);
+insert into Login values('pratik','pratik123','Favourite Bike','hyabusa');
+select * from login;
+
+create table Books
+(
+	BookID varchar(50) primary key,
+	Subject varchar(50),
+	Language varchar(50),
+	Title varchar(100),
+	Version varchar(50),
+	Author varchar(50),
+	Publisher varchar(50),
+	Copyright varchar(50),
+	Edition varchar(50),
+	Pages varchar(10),
+	NumberOfBooks varchar(10),
+	Status varchar(10)
+);
+
+insert into Books(BookID, Subject, Language, Title, Version, Author, Publisher, Copyright, Edition, Pages,	NumberOfBooks)
+ values ('34','study','mar','yuvak','3.2','pratik','max','10','2014','99','3');
+insert into Books(BookID, Subject, Language, Title, Version, Author, Publisher, Copyright, Edition, Pages,	NumberOfBooks)
+ values ('35','dfg','dfgd','hd','52.2','olgu','kuj','20','2015','99','3');
+insert into Books(BookID, Subject, Language, Title, Version, Author, Publisher, Copyright, Edition, Pages,	NumberOfBooks, Status)
+ values ('36','dk','dfgd','hd','52.2','olgu','kuj','30','2015','99','3','borrowed');
+insert into Books values ('15','dk','dfgd','hd','52.2','olgu','kuj','30','2015','99','1','borrowed');
+select * from Books;
+
+create table Members
+(
+	Type varchar(50),
+	MemberID varchar(50) primary key,
+	Name varchar(50),
+	Roll varchar(50),
+	Class varchar(50),
+	Division varchar(50),
+	Dept varchar(50),
+	Phone varchar(50),
+	Email varchar(50)
+);
+insert into Members(Type ,	MemberID   ,	Name ,	Roll ,	Class ,	Division ,	Dept ,	Phone ,	Email )
+	values ('teacher','211','prince','','','','Comp','9011989737','cnpratik@gmail.com');
+insert into Members(Type ,	MemberID   ,	Name ,	Roll ,	Class ,	Division ,	Dept ,	Phone ,	Email ) 
+	values ('student','12','prince','3','ty','a','','9011989737','cnpratik@gmail.com');
+select * from Members;
+
+create table Transaction
+(
+	SrNo varchar(50) primary key,
+	BookID varchar(50) ,
+	MemberID varchar(50),
+	BorrowDate date,
+	ReturnDate date,
+	constraint foreign key(BookID) references Books(BookID),
+	constraint foreign key(MemberID) references Members(MemberID)
+);
+insert into Transaction values ('01','zs34','t01','2014-02-12','2014-03-10');
+select * from Transaction;
+
+create table Bill
+(
+	BillNo int auto_increment primary key,
+	BookID varchar(50) ,
+	MemberID varchar(50),
+	BorrowDate date,
+	ReturnDate date,
+	Amount varchar(50),
+	constraint foreign key(BookID) references Books(BookID),
+	constraint foreign key(MemberID) references Members(MemberID)	
+);
+insert into Bill values ('014','zs34','t01','2014-02-12','2014-03-10','10',10.52);
+select * from Bill;
+
